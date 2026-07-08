@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DW:DO Office</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="jsdata/psalmsText.js"></script>
+    <script src="jsdata/otherTexts.js"></script>
+    <script src="jsdata/psalmsForDay.js"></script>
+    <script src="jsdata/calReadings.js"></script>
+    <script src="jsdata/lessonText.js"></script>
+    <script src="jsdata/endings.js"></script>
+    <script src="jsdata/responsories.js"></script>
+    <script src="js/ordo.js"></script>
+    <script src="js/litDay.js"></script>
+    <script src="js/officeFunctions.js"></script>
+    <script src="upup.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"></link>
+    <link rel="shortcut icon" type="image/jpg" href="icon/favicon-48x48.png" />
+    <link rel="apple-touch-icon" href="icon/favicon-192x192.png">
+  </head>
+  <body>
+    <div id="container">
+      <nav class='main-nav' id="main-nav">
+        <div id="navhead"><img width='32' height='32' src='icon/favicon-48x48.png' class='navhead'>
+          <p class='navheader'>DW:DO</p>
+        </div>
+        <div id='menu-buttons'>
+          <button type="button" id='officeButton' class='sbtn' onclick="toggleOffice();">M</button>
+          <button type="button" id='todayButton' class='sbtn hidden' onclick="changedate();"><i class="icon-ccw"></i></button>
+          <button type="button" id='ordoButton' class='sbtn' onclick="showView('ordo');"><i class="icon-calendar-empty"></i></button>
+          <button type="button" id='textsButton' class='sbtn' onclick="showView('texts');"><i class="icon-doc-text"></i></button>
+          <button type="button" id='settingsButton' class='sbtn' onclick="showView('settings');"><i class="icon-cog-outline"></i></button>
+          <button type="button" id='returnButton' class='sbtn hidden' onclick="showView('office');"><i class="icon-reply"></i></button>
+        </div>
+      </nav>
+
+      <div id="ordo"></div>
+      <div id="liturgicalDay"></div>
+      <div id="office">
+        <div id="officeTitle"></div>
+        <div id="introduction"></div>
+        <div id="Responsory"></div>
+        <div id="InvitatoryPsalm"></div>
+        <div id="Psalmody"></div>
+        <div id="FirstLesson" class="firstlesson"></div>
+        <div id="TeDeumOrMagnificat" class="psalm"></div>
+        <div id="SecondLesson" class="secondlesson"></div>
+        <div id="BenedictusorNuncDimittis" class="psalm"></div>
+        <div id="Creed" class="psalm"></div>
+        <div id="LesserLitany"></div>
+        <div id="LordsPrayer" class="psalm"></div>
+        <div id="Suffrages"></div>
+        <div id="Collect"></div>
+        <div id="Conclusion"></div>
+        <div id="Anthem"></div>
+      </div>
+      <div id="compline">
+        <div id="complineHeading"></div> 
+        <div id="complineIntroduction"></div>
+        <div id='complinePsalmody'></div>
+        <div id='complineChapter'></div>
+        <div id="complineHymn"></div>
+        <div id="complineND"></div>
+        <div id="complineCreed" class="psalm"></div>
+        <div id="complineLordsPrayer" class="psalm"></div>
+        <div id="complineConfession" class="psalm"></div>
+        <div id="complineCollects"></div>
+        <div id="complineAnthem">
+        </div>
+      </div>
+      <div id="texts">
+        <button class="accordion">The Litany</button>
+        <div class='panel' id="litany">
+        </div>
+        <button class="accordion">The Psalms</button>
+        <div class='panel' id="thePsalms">
+          <div id="psalmsList"></div>
+          <div id="thePsalm"></div>
+        </div>
+        <button id='messagesaccordion' class="accordion hidden">Message</button>
+        <div class='panel' id="messages"></div>
+        <!--<script>getMessages();</script>-->
+      </div>
+      <div id="settings"><h1>Settings</h1>
+        <div id="options">
+          <section>
+            <h3>Officiant</h3>
+            <div class='switchdiv'>
+            <label for="opriest">Assume officiant is a priest</label>
+              <label class="switch">
+                <input type="checkbox" id="opriest" name="opriest" onchange = "doSetting('opriest','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </section>
+          <section>
+            <h3>Country &amp; Calendar</h3>
+            <div class="custom-select">
+              <select name="country" id="country" onchange="doSetting('country');">
+                <option value="ENG">England</option>
+                <option value="SCO">Scotland</option>
+                <option value="WAL">Wales</option>
+                <option value="CAN">Canada</option>
+                <option value="USA">USA</option>
+                <option value="AUS">Australia</option>
+              </select>
+            </div>
+            <div class='switchdiv'>
+              <label for="cal_show">Show overridden items in calendar</label>
+              <label class="switch">
+                <input type="checkbox" id="cal_show" name="cal_show" onchange = "doSetting('cal_show','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div id='commonwealthoption'>
+              <div class='switchdiv'>
+                <label for="co_prayer">Show Commonwealth prayer instead of King and Royal Family</label>
+                <label class="switch">
+                  <input type="checkbox" id="co_prayer" name="co_prayer" onchange = "doSetting('co_prayer','checkbox');">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Text size</h3>
+            <div class="textbuttons">
+            <button type="button"  class='textbuttons' name="btn3" onclick="doSetting('fontsize',1);">A+</button>
+            <button type="button" class='textbuttons'  name="btn2" onclick="doSetting('fontsize',0);">A</button>
+            <button type="button" class='textbuttons' name="btn1" onclick="doSetting('fontsize',-1);">-A</button><br />
+          </div>
+            <p>Sample psalm text</p>
+            <div class='sample'>
+              <div class="psalm">
+              <p class="psalm">HELP me, Lord, for there is not one godly man left&nbsp;:<br>
+                for the faithful are minished from among the children of men,</p>
+              <p class="psalm"><span class="pNumber">2 </span>They talk of vanity every one with his neighbour&nbsp;:<br>
+                  they do but flatter with their lips, and dissemble in their double heart.</p>
+              </div>
+            </div>
+          </section>
+         <section>
+            <h3>Dark Mode</h3>
+            <div class='switchdiv'>
+              <label for="m_dm">Mattins</label>
+              <label class="switch">
+                <input type="checkbox" id="m_dm" name="m_dm" onchange = "doSetting('m_dm','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class='switchdiv'>
+              <label for="e_dm">Evensong</label>
+              <label class="switch">
+                <input type="checkbox" id="e_dm" name="e_dm" onchange = "doSetting('e_dm','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class='switchdiv'>
+              <label for="c_dm">Compline</label>
+              <label class="switch">
+                <input type="checkbox" id="c_dm" name="c_dm" onchange = "doSetting('c_dm','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </section>
+          <section>
+            <h3>Time settings</h3>
+            <div class="switchdiv">
+              <label for="c_time">Show Compline from (pm:)</label>
+              <input class="time-input" name='c_time' id="c_time" type="number" value = '9' step="1" min="4" max="11" onchange="doSetting('c_time');"/>
+            </div> 
+            <div class="switchdiv">
+              <label for="eve_time">Show eve of feasts from (pm:)</label>
+              <input class="time-input" name='c_time' id="eve_time" type="number" value = '5' step="1" min="0" max="11" onchange="doSetting('eve_time');"/>
+            </div>
+          </section>
+          <section>
+            <h3>Marian Anthems</h3>
+            <div class='switchdiv'>
+              <label for="a_m">Show anthem after Mattins</label>
+              <label class="switch">
+                <input type="checkbox" id="a_m" name="a_m" onchange = "doSetting('a_m','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class='switchdiv'>
+              <label for="a_e">Show anthem after Evensong</label>
+              <label class="switch">
+                <input type="checkbox" id="a_e" name="a_e" onchange = "doSetting('a_e','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div><HR >
+            <div class='switchdiv'>
+              <label for="ca_latin">Anthem in Latin</label>
+              <label class="switch">
+                <input type="checkbox" id="ca_latin" name="ca_latin" onchange = "doSetting('ca_latin','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </section>
+          <section>
+            <h3>Page Buttons</h3>
+            <div class='switchdiv'>
+              <label for="pb">Show page buttons</label>
+              <label class="switch">
+                <input type="checkbox" id="pb" name="pb" onchange = "doSetting('pb','checkbox');">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </section>
+        </div>
+        <p>Noticed any issues? <a href="mailto:davidaldred@gmail.com">contact me</a>
+        </div>
+      </div>
+    <div id="pagebuttons">
+      <button type="button" class='left_cpb' onclick="changePage(-1);"><</button>
+      <button type="button" class='right_cpb' onclick="changePage(1);">></button>
+    </div>
+    <script>doOrdo();</script>
+    <script>showDivs(["liturgicalDay","office"]);</script>
+    <script>showLiturgicalDay();</script>
+    <script>doOffice();</script>
+    <script>doPsalmsList();</script>
+    <script>doLitany();</script>
+     <script>
+      UpUp.start({
+        'cache-version': 'v3.0-local-rsvce',
+        'content-url': 'office.html',
+        'assets': ['office.html',
+                   'css/styles.css','css/fontello.woff',
+                   'jsdata/psalmsText.js','jsdata/otherTexts.js','jsdata/psalmsForDay.js',
+                   'jsdata/calReadings.js','jsdata/lessonText.js','jsdata/endings.js','jsdata/responsories.js',
+                   'js/ordo.js','js/litDay.js','js/officeFunctions.js','js/pageFunctions.js',
+                   'icon/favicon-48x48.png','icon/favicon-192x192.png',
+                  ],
+        'service-worker-url': 'upup.sw.min.js'
+      });
+    </script>
+</body>
+<script src="js/pageFunctions.js"></script>
+</html>

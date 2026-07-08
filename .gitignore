@@ -1,0 +1,5 @@
+# build scratch / logs (not part of the site)
+scratch_*.json
+bg_test.html
+fetch.log
+nohup.out

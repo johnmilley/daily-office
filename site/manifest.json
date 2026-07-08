@@ -1,0 +1,36 @@
+{
+    "name": "Divine Worship: Daily Office",
+    "short_name": "DW:DO",
+    "lang": "en-GB",
+    "start_url": "/office.html",
+    "id":  "/office/v2",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "An assistant for praying the Daily Office (Commonwealth edition)",
+    "icons" : [
+        {
+            "src": "pwa-assets/pwa-icons/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "pwa-assets/pwa-icons/favicon-192x192-m.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },  
+        {
+            "src": "pwa-assets/pwa-icons/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "pwa-assets/pwa-icons/favicon-512x512-m.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

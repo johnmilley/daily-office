@@ -1,0 +1,978 @@
+/* ============================================================
+   LIGHT THEME  (brighter, cleaner)
+   ============================================================ */
+:root, [data-theme="light"] {
+  --font-color: #23201c;          /* soft near-black, warm */
+  --sub-color: #3a5a86;           /* refined slate-blue (was navy) */
+  --principal-color: #98332f;     /* warm deep red (was darkred) */
+  --rubric-color: #b4573f;        /* muted terracotta (was pure red) */
+  --bg-color: #fdfcf9;            /* bright warm white (was ivory) */
+  --surface-color: #ffffff;       /* cards / raised surfaces */
+  --bg-softcolor: #f4efe2;        /* soft parchment */
+  --bg-softcolor-50: rgba(244,239,226,0.85);
+  --subhead-color: #3a5a86;
+  --secondary-color: #6b7280;
+  --heading-color: #23201c;
+  --toolbar-bg-color: #2a2622;    /* near-black warm charcoal (was pure black) */
+  --toolbar-color: #f7f4ee;
+  --border-color: #e6e0d4;        /* warm hairline */
+  --border-strong: #d3cbba;
+  --tab-border-color: #d3cbba;
+  --tab-text-color: #23201c;
+  --tab-bg-color: #f2ede2;
+  --tab-active-bg-color: #e6ddca;
+  --tab-hover-bg-color: #e9e2d3;
+  --greyedtext-color: #9a948a;
+  --link-color: #3a5a86;
+  --accent-soft: rgba(152,51,47,0.10);
+  --shadow: 0 1px 2px rgba(35,32,28,0.05), 0 4px 16px rgba(35,32,28,0.06);
+  --track-color: #d9d3c6;
+}
+
+/* ============================================================
+   DARK THEME  (redesigned: deep slate, warm off-white, gold/red accents)
+   ============================================================ */
+[data-theme="dark"] {
+  --font-color: #e7e3da;          /* warm off-white */
+  --sub-color: #86b4d8;           /* soft sky-blue (was harsh cyan) */
+  --principal-color: #e0b25a;     /* warm gold (was goldenrod) */
+  --rubric-color: #d79a6f;        /* warm tan (was peru) */
+  --bg-color: #14161a;            /* deep slate (was pure black) */
+  --surface-color: #1c1f25;       /* raised cards */
+  --bg-softcolor: #23262d;
+  --bg-softcolor-50: rgba(35,38,45,0.85);
+  --subhead-color: #86b4d8;
+  --secondary-color: #9aa2ad;
+  --heading-color: #e7e3da;
+  --toolbar-bg-color: #0e1013;    /* darker toolbar, light text (was gray/black) */
+  --toolbar-color: #ece7dc;
+  --border-color: #2c3038;        /* subtle divider */
+  --border-strong: #3a3f49;
+  --tab-border-color: #3a3f49;
+  --tab-text-color: #e7e3da;
+  --tab-bg-color: #1c1f25;
+  --tab-active-bg-color: #2c3038;
+  --tab-hover-bg-color: #262a31;
+  --greyedtext-color: #767b84;
+  --link-color: #86b4d8;
+  --accent-soft: rgba(224,178,90,0.12);
+  --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.35);
+  --track-color: #3a3f49;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body, div, nav.main-nav, .accordion, button.psalmbutton { transition: background-color .25s ease, color .25s ease, border-color .25s ease; }
+
+body {
+  font-size: 15px;
+  line-height: 1.3;
+  /*font-family: Arial, Helvetica, sans-serif;*/
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 5px;
+  margin-top:0px;
+  padding-bottom: 30px;
+  background-color: var(--bg-color);
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    background-color: var(--bg-color);
+  }
+
+  div#container {
+    /*limit to 600px wide and centre in viewport on screens > 600px effective*/
+    width: 600px;
+    margin: auto;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    padding-bottom: 20px;
+  }
+}
+
+div{
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+nav.main-nav {
+  background-color: var(--toolbar-bg-color);
+  display: flex;
+  justify-content: space-between;
+  color: var(--toolbar-color);
+  height: 40px;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+nav.main-nav>div{
+  background-color: var(--toolbar-bg-color);
+  color: var(--toolbar-color);
+}
+
+nav.main-nav.stickynav{
+  position:sticky;
+  top:0;
+}
+
+div#menu-buttons {
+  float: right;
+  padding: 4px;
+  margin: 1px 10px;
+}
+
+img.navhead {
+  float: left;
+  margin: 2px;
+}
+
+p.navheader {
+  float: left;
+  font-size: 25px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+div#today {
+  clear: both;
+}
+
+p {
+  margin-block-end: 0.5em;
+  margin-block-start: 0.5em;
+  margin-right: 4px;
+}
+
+p.liturgicalDay {
+  font-variant: small-caps;
+  margin-top: 0px;
+  color: var(--sub-color);
+}
+
+p.feasttype {
+  color: var(--principal-color);
+  font-variant: small-caps;
+  line-height: 1;
+  font-weight: bold;
+}
+
+span.eve {
+  font-size: 0.6em;
+  color: var(--sub-color);
+}
+
+span.smallcaps {
+  font-variant: small-caps;
+}
+
+span.ref {
+  color: var(--sub-color);
+  font-size: 0.8em;
+}
+
+h1.mainTitle {
+  line-height: 100%;
+  margin-block-end: 0.5em;
+}
+
+table.ldoption{
+  border-collapse: separate;
+}
+td.ldOr{
+  color: var(--rubric-color);
+  font-style: italic;
+}
+
+span.ldoption{
+  border-left: 4px solid var(--sub-color);
+  padding-left: 0.25em;
+  color: var(--sub-color);
+}
+
+/*Captions for psalms and canticles*/
+caption,
+.caption {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: left;
+  color: var(--principal-color);
+  border-top: 1px var(--border-color) solid;
+  padding-top: 5px;
+}
+
+h3.caption {
+  font-size: 1.2em;
+}
+
+h4.caption {
+  font-size: 0.9em;
+  border-top: none;
+}
+
+span.subtitle {
+  font-size: 0.9em;
+  font-weight: normal;
+  font-style: italic;
+
+}
+
+td.inset {
+  padding-left: 25px;
+}
+
+p.antiphon1::before, p.antiphon2::before{
+  content: "Antiphon:";
+  color: var(--rubric-color);
+}
+
+p.rubric, td.rubric {
+  border-top: 1px var(--border-color) solid;
+  padding-top: 14px;
+  color: var(--rubric-color);
+  font-style: italic;
+}
+
+p.rubric-noborder {
+  color: var(--rubric-color);
+  font-style: italic;
+}
+
+/*Layout for psalms, gloria and canticles*/
+p.psalm {
+  margin-left: 2em;
+}
+
+td.chapter::first-letter, 
+p.collect.firstline::first-letter,
+p.psalm.chapter::first-letter{
+  color: var(--principal-color);
+  float: left;
+  font-size: 2em;
+  line-height: 1;
+  font-weight: bold;
+  margin-right: 5px;
+  margin-left: 0em;
+}
+
+div.psalm p:first-of-type {
+  margin-left: 0.5em;
+}
+
+div.psalm p:first-of-type::first-letter {
+  color: var(--principal-color);
+  float: left;
+  font-size: 2em;
+  line-height: 1;
+  font-weight: bold;
+  margin-right: 5px;
+  margin-left: 0em;
+}
+
+p.lessonintro {
+  font-size: 1.1em;
+  margin-left: 0.5em;
+}
+
+p.lessonintro a{
+  color: var(--sub-color);
+}
+
+p.psalm span.pNumber {
+  margin-left: -2em;
+  padding-right: 1em;
+  font-size: 0.7em;
+}
+
+p.collect {
+  margin-left: 1em;
+  line-height: 20px;
+}
+
+p.gloria {
+  margin-left: 2em;
+  font-style: italic;
+  color: var(--sub-color);
+}
+
+.speaker {
+  vertical-align: top;
+  font-weight: normal;
+  font-style: italic;
+  color: var(--principal-color);
+  width: 5em;
+  padding-right: 1em;
+}
+
+/* Table for responsorial sections */
+
+td.text {
+  vertical-align: top;
+  font-weight: normal;
+}
+
+/* Tab content and buttons */
+button.tablinks {
+  border: 1px solid var(--tab-border-color);
+  border-radius: 1px;
+  padding: 5px;
+  font-style: italic;
+}
+
+button.tablinks.active {
+  background-color: var(--border-color);
+}
+
+.tabcontent {
+  display: none;
+}
+
+.tabcontent.open {
+  display: block;
+}
+
+/* Tabs */
+
+.container--tabs .nav-tabs {
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  border-bottom: 1px solid var(--tab-border-color);
+}
+
+.container--tabs .nav-tabs>li {
+  float: left;
+  margin-bottom: -1px;
+}
+
+.container--tabs .nav-tabs>li>a {
+  float: left;
+  margin-right: 2px;
+  line-height: 1.42857143;
+  padding: 10px;
+  border: 1px solid var(--tab-border-color);
+  border-radius: 4px 4px 0 0;
+  text-decoration: none;
+  font-style: italic;
+  color: var(--tab-text-color);
+}
+
+.container--tabs .nav-tabs>li>a:hover {
+  border-color: var(--tab-border-color);
+  background-color: var(--tab-bg-color);
+}
+
+.container--tabs .nav-tabs>li.active>a,
+.container--tabs .nav-tabs>li.active>a:hover,
+.container--tabs .nav-tabs>li.active>a:focus {
+  cursor: default;
+  background-color: var(--tab-active-bg-color);
+  border: 1px solid var(--tab-border-color);
+  border-bottom-color: transparent;
+  font-style: normal;
+}
+
+.container--tabs .tab-content {
+  /*float: left;*/
+  width: 100%;
+}
+
+.container--tabs .tab-content>.tab-pane {
+  display: none;
+}
+
+.container--tabs .tab-content>.tab-pane.active {
+  display: block;
+  padding: 0.5%;
+  padding-top: 30px;
+}
+
+.container--tabs .tab-content>.active {
+  display: block;
+}
+
+div.sample{
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+div#settings {
+  margin: 20px;
+  padding: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+ /* display: none;*/
+}
+
+div#settings h3{
+  margin-top: 4px;
+  margin-bottom: 4px;
+  color: var(--principal-color);
+}
+
+div#settings section {
+  margin-top: 5px;
+  padding: 15px 4px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--bg-color);
+}
+
+div.hidden{
+  display: none;
+}
+
+.switchdiv {
+  position: relative;
+  padding-top: 8px;
+  height: 35px;
+}
+
+.switchdiv .switch {
+  position: relative;
+  float: right;
+  top: -5px;
+  width: 60px;
+  height: 34px;
+  padding-top: -5px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--toolbar-color);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--principal-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--principal-color);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.custom-select {
+min-width: 250px;
+position: relative;
+margin-bottom: 15px;
+}
+
+.custom-select select {
+appearance: none;
+width: 100%;
+font-size: 1.15rem;
+padding: 0.675em 6em 0.675em 1em;
+background-color: var(--bg-color);
+border: 1px solid #caced1;
+border-radius: 0.25rem;
+color: var(--font-color);
+cursor: pointer;
+}
+
+.custom-select::before,
+.custom-select::after {
+--size: 0.3rem;
+content: "";
+position: absolute;
+right: 1rem;
+pointer-events: none;
+}
+
+.custom-select::before {
+border-left: var(--size) solid transparent;
+border-right: var(--size) solid transparent;
+border-bottom: var(--size) solid black;
+top: 40%;
+}
+
+.custom-select::after {
+border-left: var(--size) solid transparent;
+border-right: var(--size) solid transparent;
+border-top: var(--size) solid black;
+top: 55%;
+}
+
+input.time-input{
+  float: right;
+  margin-right: 8px;;
+  font-size: 1.15em;
+}
+
+button.sbtn {
+  background-color: var(--toolbar-bg-color);
+  color: var(--toolbar-color);
+  font-size: 24px;
+  font-weight: 400;
+  margin-right: 15px;
+  padding: 0;
+  border: none;
+}
+
+button.sbtn.alert {
+  color: yellow;
+}
+
+button.textbuttons {
+  background-color: var(--principal-color);
+  color: var(--toolbar-color);
+  font-size: 1.5em;
+  height: 1.5em;
+  width: 1.5em;
+  float: right;
+  margin-right: 5px;
+  padding: 0;
+  border: none;
+}
+
+button.hidden {
+  display: none;
+}
+
+/* Place the page buttons bar at the bottom of the page, and make it stick */
+div#pagebuttons {
+  display: none;
+  background-color: var(--bg-softcolor-50);
+  overflow: hidden;
+  position: fixed;
+  margin: -5px;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Style the links inside the navigation bar */
+div#pagebuttons button {
+  color: var(--toolbar-color);
+  background-color: var(--toolbar-bg-color);
+  text-align: center;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+div#pagebuttons button.left_cpb {
+  float: left;
+}
+
+div#pagebuttons button.right_cpb {
+  float: right;
+}
+
+div#ordoheader{
+  height: 45px;
+  position: sticky;
+  top: 40px;
+  background: var(--bg-color);
+  z-index: 1;
+  padding:0px;
+}
+
+div#ordoheader h1{
+  margin-top: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+div#yearchanger {
+  float: right;
+  padding-top: 8px;
+}
+
+div#yearchanger button.sbtn {
+  margin-left: 15px;
+  background-color: var(--principal-color)
+}
+
+div#yearchanger span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+tr.lineabove{
+  border-top: 1px solid var(--border-color);
+}
+
+tr.lineabove > td{
+  padding-top: 8px;
+}
+
+table{
+  border-collapse: collapse; 
+}
+
+table.ordo {
+  border: 1px solid;
+}
+
+table.ordo th,
+table.ordo td {
+  border: 1px solid var(--principal-color);
+  padding: 8px 3px;;
+}
+
+table.ordo th.stickyheader {
+  background: var(--toolbar-bg-color);
+  color:var(--toolbar-color);
+  position: sticky;
+  top: 84px;
+}
+
+span.line_main {
+  font-weight: normal;
+}
+
+span.line_outranked {
+  color: var(--greyedtext-color);
+}
+
+span.line_optional, .ltype_O {
+  font-style: italic;
+}
+
+span.ltype_S {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+span.ltype_s:not(.line_outranked) {
+  font-weight: bold;
+}
+
+span.ltype_x {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: italic;
+}
+
+span.ltype_F, span.ltype_L{
+  font-variant: small-caps;
+}
+
+div#psalmslist{
+  text-align: center;
+}
+
+button.psalmbutton{
+  width: 50px;
+  padding: 5px;
+  margin: 2px;
+  background-color: var(--bg-color);
+  color: var(--principal-color);
+  border-color: var(--border-color);
+}
+
+button.psalmClose{
+  float: right;
+  width: 40px;
+}
+
+/*Accordion & panels*/
+.accordion {
+  background-color: var(--bg-color);
+  
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: var(--principal-color);
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border-color);
+  outline: none;
+  transition: 0.4s;
+}
+
+.panel {
+  display: none;
+  overflow: hidden;
+}
+
+.accordion:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+button.accordion.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Fontello icons */
+@font-face {
+  font-family: 'fontello';
+  src: url('fontello.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 0.9em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--toolbar-color);
+}
+.icon-cog-outline:before { content: '\e800'; } /* '' */
+.icon-ccw:before { content: '\e801'; } /* '' */
+.icon-doc-text:before { content: '\f0f6'; } /* '' */
+.icon-reply:before { content: '\f112'; } /* '' */
+.icon-calendar-empty:before { content: '\f133'; } /* '' */
+.icon-bell-alt:before { content: '\f0f3'; } /* '' */
+
+@media only screen and (max-width: 400px) {
+  button.sbtn {
+    margin-right: 10px;
+  }
+  div.menu-buttons {
+    margin-right: 0px;
+  }
+  h1{
+    font-size: 1.8em;
+  }
+  
+  [class^="icon-"]:before, [class*=" icon-"]:before {
+    margin-left: 0;
+  }
+}
+/* ============================================================
+   REDESIGN LAYER — v3 local edition
+   toolbar polish · settings · toggles · embedded lessons
+   ============================================================ */
+
+/* --- Toolbar --- */
+nav.main-nav {
+  align-items: center;
+  height: 46px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+p.navheader { font-size: 22px; letter-spacing: 0.04em; font-weight: 600; }
+button.sbtn {
+  border-radius: 8px;
+  width: 38px; height: 34px;
+  margin-right: 8px;
+  transition: background-color .15s ease, transform .1s ease;
+}
+button.sbtn:hover { background-color: rgba(255,255,255,0.12); }
+button.sbtn:active { transform: scale(0.92); }
+#officeButton { font-weight: 700; }
+
+/* --- Embedded scripture lessons --- */
+div.lessonbody {
+  margin: 0.35em 0 0.2em;
+  padding: 0.2em 0.6em 0.2em 0.9em;
+  border-left: 3px solid var(--accent-soft);
+  border-left-color: var(--principal-color);
+}
+p.reading {
+  margin: 0.55em 0;
+  line-height: 1.5;
+  text-align: left;
+  hyphens: auto;
+}
+p.reading.poetry {
+  margin-left: 0.6em;
+  padding-left: 0.9em;
+  text-indent: -0.9em;   /* hanging indent for wrapped poetic lines */
+}
+sup.vn {
+  color: var(--principal-color);
+  font-size: 0.62em;
+  font-weight: 700;
+  vertical-align: super;
+  line-height: 0;
+  margin-right: 0.25em;
+  user-select: none;
+}
+span.cn {
+  color: var(--principal-color);
+  font-weight: 700;
+  font-size: 1.35em;
+  line-height: 1;
+  float: left;
+  margin: 0.02em 0.18em 0 0;
+}
+span.sc { font-variant: small-caps; letter-spacing: 0.02em; }
+p.lessonintro {
+  font-size: 1.05em;
+  font-style: italic;
+  color: var(--sub-color);
+  margin-left: 0.4em;
+}
+p.lessonintro.lessonend {
+  margin-top: 0.6em;
+  color: var(--rubric-color);
+}
+p.lessonintro a { color: var(--link-color); text-decoration: none; border-bottom: 1px dotted; }
+
+/* --- Settings screen --- */
+div#settings { margin: 16px 14px 40px; }
+div#settings h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: var(--principal-color);
+  font-size: 1.7em;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+}
+div#settings section {
+  margin: 0 0 16px;
+  padding: 6px 16px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow);
+}
+div#settings h3 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: var(--principal-color);
+  font-size: 1.15em;
+  letter-spacing: 0.01em;
+  padding: 10px 0 8px;
+  margin: 0 0 4px;
+  border-bottom: 1px solid var(--border-color);
+}
+.switchdiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: auto;
+  min-height: 40px;
+  padding: 6px 0;
+}
+.switchdiv label:first-child { flex: 1; }
+div#settings section p { color: var(--secondary-color); font-size: 0.95em; }
+
+/* --- Toggle switches (recoloured, smaller, smoother) --- */
+.switchdiv .switch {
+  position: relative; float: none; top: 0;
+  flex: 0 0 auto;
+  width: 48px; height: 28px;
+}
+.slider {
+  background-color: var(--track-color);
+  border-radius: 28px;
+  transition: background-color .25s ease;
+}
+.slider:before {
+  height: 22px; width: 22px;
+  left: 3px; bottom: 3px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  border-radius: 50%;
+  transition: transform .25s ease;
+}
+input:checked + .slider { background-color: var(--principal-color); }
+input:checked + .slider:before { transform: translateX(20px); }
+input:focus + .slider { box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* --- Select (country) --- */
+.custom-select select {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  color: var(--font-color);
+  font-size: 1.05rem;
+  padding: 0.6em 3em 0.6em 0.9em;
+}
+.custom-select::before { border-bottom-color: var(--font-color); }
+.custom-select::after { border-top-color: var(--font-color); }
+
+/* --- Text-size buttons --- */
+button.textbuttons {
+  border-radius: 8px;
+  width: 2em; height: 2em;
+  margin-left: 6px;
+  box-shadow: var(--shadow);
+}
+div.sample {
+  margin-top: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: var(--bg-softcolor);
+}
+
+/* --- Time inputs --- */
+input.time-input {
+  background-color: var(--surface-color);
+  color: var(--font-color);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 4px 6px;
+  width: 3.2em;
+}
+
+/* --- Accordions (Other Texts) --- */
+.accordion {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  margin-top: 8px;
+  padding: 16px 18px;
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow);
+}
+.accordion:hover { background-color: var(--bg-softcolor); }
+
+/* --- Psalm number buttons --- */
+button.psalmbutton {
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+}
+button.psalmbutton:hover { background-color: var(--bg-softcolor); }
+
+/* --- Captions get a touch more air --- */
+.caption { border-top-color: var(--border-strong); padding-top: 10px; }
+
+/* --- Links --- */
+a { color: var(--link-color); }
