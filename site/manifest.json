@@ -2,7 +2,7 @@
     "name": "Divine Worship: Daily Office",
     "short_name": "DW:DO",
     "lang": "en-GB",
-    "start_url": "/office.html",
+    "start_url": "office.html",
     "id":  "/office/v2",
     "display": "standalone",
     "background_color": "#fff",
