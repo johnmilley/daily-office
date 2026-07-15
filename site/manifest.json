@@ -1,11 +1,12 @@
 {
-    "name": "Divine Worship: Daily Office",
-    "short_name": "DW:DO",
+    "name": "Daily Prayer",
+    "short_name": "Daily Prayer",
     "lang": "en-GB",
     "start_url": "office.html",
     "id":  "/office/v2",
     "display": "standalone",
-    "background_color": "#fff",
+    "background_color": "#ffffff",
+    "theme_color": "#1a1918",
     "description": "An assistant for praying the Daily Office (Commonwealth edition)",
     "icons" : [
         {

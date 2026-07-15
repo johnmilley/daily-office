@@ -240,12 +240,8 @@ function showView(view){
 }
 
 function changePage(direction){
-    // Direction: 1 is down, -1 is up
-    // Only available if bottom bar with 'page' button is visible.
-    // Height available = documentElement height less height of bottom nav bar
-    var pbbar_height = document.getElementById('pagebuttons').clientHeight;
     var height = document.documentElement.clientHeight;
-    window.scrollBy(0,direction * (height-pbbar_height));
+    window.scrollBy(0,direction * height);
 }
 
 function changeYear(direction){
@@ -381,8 +377,8 @@ function checkCalShowSetting() {
 }
 
 function checkPBSetting(){
-// Set class on PageButtons div
-var pbDiv = document.getElementById("pagebuttons");
+    var pbDiv = document.getElementById("pagebuttons");
+    if(!pbDiv) return;
     if(settings.pb){
         pbDiv.style.display = 'block';
     }

@@ -219,27 +219,24 @@ function doOurFather() {
 }
 
 function doIntroduction() {
-    if (ld.Type != 'S' && ld.Type != 's') {
-        //  Introduction only shown on Sundays and Solemnities
+    // Shown daily, as in the book: Sentences, Exhortation, Confession,
+    // Absolution and the Lord's Prayer open both Mattins and Evensong.
+    divText = "<h2 class='caption'>The Introduction</h2>\r\n";
+    divText += doSentences();
+    divText += doExhortation();
+    divText += doConfession();
+    divText += doAfterConfession();
+    divText += doOurFather();
+
+    switch (ourOffice) {
+        case 'm': h = 'Morning'; break;
+        case 'e': h = 'Evening'; break;
     }
-    else {
-        divText = "<h2 class='caption'>The Introduction</h2>\r\n";
-        divText += doSentences();
-        divText += doExhortation();
-        divText += doConfession();
-        divText += doAfterConfession();
-        divText += doOurFather();
 
-        switch (ourOffice) {
-            case 'm': h = 'Morning'; break;
-            case 'e': h = 'Evening'; break;
-        }
+    divText += "\n<h2 class='caption'>" + h + " Prayer</h2>\n";
 
-        divText += "\n<h2 class='caption'>" + h + " Prayer</h2>\n";
-
-        let element = document.getElementById('introduction');
-        element.innerHTML = divText;
-    }
+    let element = document.getElementById('introduction');
+    element.innerHTML = divText;
 }
 
 function doResponsory(name, divName, heading) {
@@ -417,6 +414,14 @@ function doInvitatory(divName) {
     }
 }
 
+function cleanLessonHTML(html) {
+    // Strip the embedded verse superscripts and chapter numerals so the lesson
+    // reads — and copies — as clean prose, as in the printed book.
+    return html
+        .replace(/<sup class="vn">[^<]*<\/sup>\s*/g, "")
+        .replace(/<span class="cn">[^<]*<\/span>\s*/g, "");
+}
+
 function doLesson(number, divName) {
     var output = "";
     var lessonRef = "";
@@ -487,7 +492,7 @@ function doLesson(number, divName) {
         var rawRef = lessonRef;
         output += "<p class='lessonintro'>" + lessonIntro + "</p>";
         if (typeof lessonText !== 'undefined' && lessonText[rawRef]) {
-            output += "<div class='lessonbody'>" + lessonText[rawRef] + "</div>";
+            output += "<div class='lessonbody'>" + cleanLessonHTML(lessonText[rawRef]) + "</div>";
             output += "<p class='lessonintro lessonend'>" + lessonEnd + "</p>";
         }
         else {
@@ -1080,9 +1085,41 @@ function doPsalmsList(divName = 'psalmsList'){
     div.innerHTML = output;
 }
 
+function doHymnsList(divName = 'hymnsList'){
+    const div = document.getElementById(divName);
+    var output = "";
+    officeHymns.forEach(function(group, g){
+        output += "<h4 class='caption hymngroup'>" + group.group + "</h4>\n";
+        group.hymns.forEach(function(hymn, h){
+            output += "<button class='hymnbutton' onclick='showHymn(" + g + "," + h + ");'>" +
+                hymn.title + "<span class='hymnusage'>" + hymn.usage + "</span></button>\n";
+        });
+    });
+    div.innerHTML = output;
+}
+
+function showHymn(g, h){
+    const hymn = officeHymns[g].hymns[h];
+    const div = document.getElementById("theHymn");
+    var output = "<button class='psalmClose sbtn' onclick='closeHymn()'><svg width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polyline points='9,4 4,8 9,12'/><line x1='4' y1='8' x2='14' y2='8'/></svg></button>\n";
+    output += "<h3 class='caption'>" + hymn.title + "</h3>\n";
+    output += "<p class='hymnlatin'>" + hymn.latin + " &middot; <em>" + hymn.usage + "</em></p>\n";
+    hymn.verses.forEach(function(verse){
+        output += "<p class='hymnverse'>" + verse.replace(/\n/g, "<br>") + "</p>\n";
+    });
+    output += "<button class='psalmClose sbtn' onclick='closeHymn()'><svg width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polyline points='9,4 4,8 9,12'/><line x1='4' y1='8' x2='14' y2='8'/></svg></button>\n";
+    div.innerHTML = output;
+    document.getElementById('hymnsList').classList.add('hidden');
+}
+
+function closeHymn(){
+    document.getElementById("theHymn").innerHTML = "";
+    document.getElementById('hymnsList').classList.remove('hidden');
+}
+
 function showPsalm(n){
     const div = document.getElementById("thePsalm");
-    div.innerHTML += "<button class='psalmClose sbtn' onclick = 'closePsalm()'><i class='icon-reply'></i></button>\n";
+    div.innerHTML += "<button class='psalmClose sbtn' onclick = 'closePsalm()'><svg width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polyline points='9,4 4,8 9,12'/><line x1='4' y1='8' x2='14' y2='8'/></svg></button>\n";
     if(n==119){
         //119 is split into parts, so we need to iterate over them
         for(let i=0; i<22; i++){
@@ -1093,7 +1130,7 @@ function showPsalm(n){
     else {
         div.innerHTML += PsalmHTML(n,"");
     }
-    div.innerHTML += "<button class='psalmClose sbtn' onclick = 'closePsalm()'><i class='icon-reply'></i></button>\n";
+    div.innerHTML += "<button class='psalmClose sbtn' onclick = 'closePsalm()'><svg width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polyline points='9,4 4,8 9,12'/><line x1='4' y1='8' x2='14' y2='8'/></svg></button>\n";
     const listDiv = document.getElementById('psalmsList');
     listDiv.classList.add('hidden');
 }
@@ -1103,4 +1140,42 @@ function closePsalm(){
     div.innerHTML = "";
     const listDiv = document.getElementById('psalmsList');
     listDiv.classList.remove('hidden');
+}
+
+// --- Export to PDF (via the browser's print-to-PDF) ---
+function openPrintDialog() {
+    const div = document.getElementById('printHymnChoices');
+    if (!div.innerHTML) {
+        var out = "";
+        officeHymns.forEach(function (group, g) {
+            group.hymns.forEach(function (hymn, h) {
+                out += "<label class='printhymn'><input type='checkbox' value='" + g + "-" + h + "'>" +
+                    "<span>" + hymn.title + "<span class='hymnusage'>" + hymn.usage + "</span></span></label>\n";
+            });
+        });
+        div.innerHTML = out;
+    }
+    document.getElementById('printOverlay').classList.remove('hidden');
+}
+
+function closePrintDialog() {
+    document.getElementById('printOverlay').classList.add('hidden');
+}
+
+function doPrintExport() {
+    const chosen = document.querySelectorAll('#printHymnChoices input:checked');
+    var out = "";
+    chosen.forEach(function (cb) {
+        const p = cb.value.split('-');
+        const hymn = officeHymns[+p[0]].hymns[+p[1]];
+        out += "<h3 class='caption'>" + hymn.title + "</h3>\n";
+        out += "<p class='hymnlatin'>" + hymn.latin + " &middot; <em>" + hymn.usage + "</em></p>\n";
+        hymn.verses.forEach(function (verse) {
+            out += "<p class='hymnverse'>" + verse.replace(/\n/g, "<br>") + "</p>\n";
+        });
+    });
+    document.getElementById('printHymns').innerHTML =
+        out ? "<h2 class='caption'>Hymns</h2>\n" + out : "";
+    closePrintDialog();
+    window.print();
 }

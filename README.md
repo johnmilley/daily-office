@@ -10,8 +10,20 @@ This copy differs from the live site in two ways:
    at both **Mattins and Evensong**, for every day of the liturgical year — is baked into the
    app so it reads inline, with no network needed. The text is the **RSV Catholic Edition
    (RSVCE)**, the same translation the live site links to.
-2. **Refreshed appearance.** A brighter light theme, a redesigned dark theme (deep slate with
-   warm gold/red accents), and a rebuilt, card-based Settings screen.
+2. **Book-styled appearance.** The design follows the printed *Divine Worship: Daily Office*
+   (CTS Commonwealth Edition): white paper, burgundy-and-gold chrome, liturgical-red rubrics
+   with pilcrows, and centred small-caps headings. The dark theme is a "book at night" —
+   plum-black with gold and brick-rose accents. Lessons are printed as clean prose (verse
+   and chapter numerals are stripped at render time, so copied text is clean too).
+3. **The Hymnal.** The Texts view includes the traditional seasonal office hymns
+   (English Hymnal translations) plus a selection of common morning, evening and general
+   hymns — all public-domain texts (`site/jsdata/hymns.js`).
+4. **The Introduction daily.** The Sentences, Exhortation, Confession, Absolution and
+   Lord's Prayer open Mattins and Evensong every day (upstream showed them only on
+   Sundays and Solemnities).
+5. **Collapsible sections & PDF export.** Each section of the office folds up behind its
+   caption; the PDF button in the toolbar lays the page out for print (browser
+   "Save as PDF"), optionally appending chosen hymns.
 
 > ⚠️ **Keep this repository private.** The embedded lesson text is RSVCE, which is copyrighted
 > (© National Council of the Churches of Christ). This copy is for personal, local use only —

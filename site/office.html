@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DW:DO Office</title>
+    <meta name="theme-color" content="#1a1918">
+    <title>Daily Prayer</title>
     <link rel="manifest" href="manifest.json">
     <script src="jsdata/psalmsText.js"></script>
     <script src="jsdata/otherTexts.js"></script>
@@ -12,6 +13,7 @@
     <script src="jsdata/lessonText.js"></script>
     <script src="jsdata/endings.js"></script>
     <script src="jsdata/responsories.js"></script>
+    <script src="jsdata/hymns.js"></script>
     <script src="js/ordo.js"></script>
     <script src="js/litDay.js"></script>
     <script src="js/officeFunctions.js"></script>
@@ -23,16 +25,18 @@
   <body>
     <div id="container">
       <nav class='main-nav' id="main-nav">
-        <div id="navhead"><img width='32' height='32' src='icon/favicon-48x48.png' class='navhead'>
-          <p class='navheader'>DW:DO</p>
+        <div id="navhead">
+          <svg class="navhead-cross" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="10" y1="2" x2="10" y2="18"/><line x1="4" y1="7" x2="16" y2="7"/></svg>
+          <p class='navheader'>Daily Prayer</p>
         </div>
         <div id='menu-buttons'>
-          <button type="button" id='officeButton' class='sbtn' onclick="toggleOffice();">M</button>
-          <button type="button" id='todayButton' class='sbtn hidden' onclick="changedate();"><i class="icon-ccw"></i></button>
-          <button type="button" id='ordoButton' class='sbtn' onclick="showView('ordo');"><i class="icon-calendar-empty"></i></button>
-          <button type="button" id='textsButton' class='sbtn' onclick="showView('texts');"><i class="icon-doc-text"></i></button>
-          <button type="button" id='settingsButton' class='sbtn' onclick="showView('settings');"><i class="icon-cog-outline"></i></button>
-          <button type="button" id='returnButton' class='sbtn hidden' onclick="showView('office');"><i class="icon-reply"></i></button>
+          <button type="button" id='officeButton' class='sbtn' onclick="toggleOffice();" title="Switch office">M</button>
+          <button type="button" id='todayButton' class='sbtn hidden' onclick="changedate();" title="Return to today"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9A5 5 0 1 1 9 4"/><polyline points="9,1 13,4 9,7"/></svg></button>
+          <button type="button" id='ordoButton' class='sbtn' onclick="showView('ordo');" title="Calendar"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="2.5" width="15" height="14"/><line x1="1.5" y1="6.5" x2="16.5" y2="6.5"/><line x1="5.5" y1="1" x2="5.5" y2="4"/><line x1="12.5" y1="1" x2="12.5" y2="4"/></svg></button>
+          <button type="button" id='textsButton' class='sbtn' onclick="showView('texts');" title="Texts &amp; Hymns"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 15.5V4.5A5.5 5.5 0 0 0 2 3v12a5.5 5.5 0 0 1 7-1z"/><path d="M9 15.5V4.5A5.5 5.5 0 0 1 16 3v12a5.5 5.5 0 0 0-7-1z"/></svg></button>
+          <button type="button" id='printButton' class='sbtn' onclick="openPrintDialog();" title="Export to PDF"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,6 4,1 14,1 14,6"/><rect x="1.5" y="6" width="15" height="7"/><polyline points="5,10 5,17 13,17 13,10"/></svg></button>
+          <button type="button" id='settingsButton' class='sbtn' onclick="showView('settings');" title="Settings"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="2" y1="4" x2="16" y2="4"/><line x1="2" y1="9" x2="16" y2="9"/><line x1="2" y1="14" x2="16" y2="14"/><circle cx="7" cy="4" r="2.2" fill="currentColor" stroke="none"/><circle cx="12" cy="9" r="2.2" fill="currentColor" stroke="none"/><circle cx="6" cy="14" r="2.2" fill="currentColor" stroke="none"/></svg></button>
+          <button type="button" id='returnButton' class='sbtn hidden' onclick="showView('office');" title="Back"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="10,5 5,9 10,13"/><line x1="5" y1="9" x2="16" y2="9"/></svg></button>
         </div>
       </nav>
 
@@ -78,6 +82,11 @@
         <div class='panel' id="thePsalms">
           <div id="psalmsList"></div>
           <div id="thePsalm"></div>
+        </div>
+        <button class="accordion">The Hymnal</button>
+        <div class='panel' id="theHymns">
+          <div id="hymnsList"></div>
+          <div id="theHymn"></div>
         </div>
         <button id='messagesaccordion' class="accordion hidden">Message</button>
         <div class='panel' id="messages"></div>
@@ -200,38 +209,38 @@
               </label>
             </div>
           </section>
-          <section>
-            <h3>Page Buttons</h3>
-            <div class='switchdiv'>
-              <label for="pb">Show page buttons</label>
-              <label class="switch">
-                <input type="checkbox" id="pb" name="pb" onchange = "doSetting('pb','checkbox');">
-                <span class="slider round"></span>
-              </label>
-            </div>
-          </section>
         </div>
-        <p>Noticed any issues? <a href="mailto:davidaldred@gmail.com">contact me</a>
         </div>
       </div>
-    <div id="pagebuttons">
-      <button type="button" class='left_cpb' onclick="changePage(-1);"><</button>
-      <button type="button" class='right_cpb' onclick="changePage(1);">></button>
+    <div id="printOverlay" class="hidden">
+      <div id="printCard">
+        <h3>Export to PDF</h3>
+        <p>The current page will be laid out for printing &mdash; choose &ldquo;Save as PDF&rdquo;
+          in your browser's print dialog. Tick any Office Hymns to append them.</p>
+        <div id="printHymnChoices"></div>
+        <div class="printactions">
+          <button type="button" class="printgo" onclick="doPrintExport();">Export</button>
+          <button type="button" class="printcancel" onclick="closePrintDialog();">Cancel</button>
+        </div>
+      </div>
     </div>
+    <div id="printHymns"></div>
     <script>doOrdo();</script>
     <script>showDivs(["liturgicalDay","office"]);</script>
     <script>showLiturgicalDay();</script>
     <script>doOffice();</script>
     <script>doPsalmsList();</script>
+    <script>doHymnsList();</script>
     <script>doLitany();</script>
      <script>
       UpUp.start({
-        'cache-version': 'v3.0-local-rsvce',
+        'cache-version': 'v3.3-refined',
         'content-url': 'office.html',
         'assets': ['office.html',
                    'css/styles.css','css/fontello.woff',
                    'jsdata/psalmsText.js','jsdata/otherTexts.js','jsdata/psalmsForDay.js',
                    'jsdata/calReadings.js','jsdata/lessonText.js','jsdata/endings.js','jsdata/responsories.js',
+                   'jsdata/hymns.js',
                    'js/ordo.js','js/litDay.js','js/officeFunctions.js','js/pageFunctions.js',
                    'icon/favicon-48x48.png','icon/favicon-192x192.png',
                   ],
