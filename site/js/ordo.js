@@ -1085,9 +1085,9 @@ function layoutOrdo(defaultonly = false){
     var textYear = year-1 + "/" + year % 100;
     var output = "<div id='ordoheader'><h1>The Calendar</h1>\n";
     output += "<div id='yearchanger'>";
-    output += "<button class='sbtn' onclick = 'changeYear(-1);'><</button>";
+    output += "<button class='sbtn' onclick = 'changeYear(-1);'><svg width='18' height='18' viewBox='0 0 18 18' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polyline points='11,4 6,9 11,14'/></svg></button>";
     output += "<span>" + textYear + "</span>";
-    output += "<button class='sbtn' onclick = 'changeYear(1)';>></button></div>\n";
+    output += "<button class='sbtn' onclick = 'changeYear(1);'><svg width='18' height='18' viewBox='0 0 18 18' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><polyline points='7,4 12,9 7,14'/></svg></button></div>\n";
     output += "</div>\n";
     output += "<div id='ordotable'>\n<table class='ordo' id='ordo'>\n";
 
