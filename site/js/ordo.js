@@ -280,6 +280,7 @@ function loadSettingstoForm(){
     for(thisSetting in settings){
         if ((thisSetting != 'fontsize') && (!thisSetting.includes('essage'))){ //font size & messages settings don't have form inputs
             var field = document.getElementById(thisSetting);
+            if (!field) continue;
             if (field.type == 'checkbox'){
                 field.checked = (settings[thisSetting]);
             }
