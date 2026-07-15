@@ -307,7 +307,7 @@ p.collect {
 p.gloria {
   margin-left: 2em;
   font-style: italic;
-  color: var(--sub-color);
+  color: var(--rubric-color);
 }
 
 .speaker {
@@ -839,7 +839,7 @@ span.sc { font-variant: small-caps; letter-spacing: 0.02em; }
 p.lessonintro {
   font-size: 1.05em;
   font-style: italic;
-  color: var(--sub-color);
+  color: var(--rubric-color);
   margin-left: 0.4em;
 }
 p.lessonintro.lessonend {
