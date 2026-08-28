@@ -72,7 +72,7 @@ hr { display: none; }
 
 body {
   font-size: 15px;
-  line-height: 1.3;
+  line-height: 1.4;
   /*font-family: Arial, Helvetica, sans-serif;*/
   font-family: Georgia, 'Times New Roman', Times, serif;
   margin: 5px;
@@ -89,6 +89,7 @@ body {
   div#container {
     /*limit to 600px wide and centre in viewport on screens > 600px effective*/
     width: 80%;
+    max-width: 1200px;
     margin: auto;
     background-color: var(--bg-color);
     color: var(--font-color);
@@ -113,6 +114,8 @@ nav.main-nav {
   margin-bottom: 1em;
   width: calc(100% + 10px);
   box-sizing: border-box;
+  position: sticky;
+  top: 0px;
 }
 
 nav.main-nav .nav-inner {
@@ -121,7 +124,7 @@ nav.main-nav .nav-inner {
   align-items: center;
   flex: 1 1 auto;
   width: 100%;
-  max-width: 600px;
+  max-width: 1200px;
   height: 100%;
   padding: 0 5px;
 }
@@ -811,7 +814,7 @@ button.accordion.active:after {
     margin: 0 4px 0 0;
   }
   h1{
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
   
   [class^="icon-"]:before, [class*=" icon-"]:before {
@@ -825,7 +828,7 @@ button.accordion.active:after {
 
 /* --- Toolbar (dark charcoal with gold icons & title, gilt separator) --- */
 nav.main-nav {
-  align-items: center;
+  /* align-items: center; */
   height: 46px;
   border-bottom: 1px solid rgba(201,165,74,0.25);
   box-shadow: 0 2px 6px rgba(0,0,0,0.18);

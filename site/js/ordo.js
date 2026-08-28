@@ -30,7 +30,7 @@ const crTitle = 0, crDate = 1, crType = 2, crCollect = 3,
     crSeason = 16, crCountries = 17;
 // Default settings
 var settings = {opriest: false, country: 'ENG', co_prayer: false,
-    fontsize: 28, m_dm: false, e_dm: false, c_dm: false,
+    fontsize: 20, m_dm: false, e_dm: false, c_dm: false,
     ca_latin: false, c_time: 9, eve_time: 6, pb: false ,cal_show: false,
     lastMessageRequest: "", lastMessageDate: "0000-00-00", lastMessage: ""};
 
