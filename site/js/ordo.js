@@ -30,7 +30,7 @@ const crTitle = 0, crDate = 1, crType = 2, crCollect = 3,
     crSeason = 16, crCountries = 17;
 // Default settings
 var settings = {opriest: false, country: 'ENG', co_prayer: false,
-    fontsize: 15, m_dm: false, e_dm: false, c_dm: false,  
+    fontsize: 28, m_dm: false, e_dm: false, c_dm: false,
     ca_latin: false, c_time: 9, eve_time: 6, pb: false ,cal_show: false,
     lastMessageRequest: "", lastMessageDate: "0000-00-00", lastMessage: ""};
 
@@ -274,6 +274,10 @@ function getSettingsFromCookies(first=false){
         if (settingValue === "true" || settingValue === "false") {settingValue = (settingValue === "true");}
         settings[settingName] = settingValue;
     }
+    // Migrate the old small default font size up to the new default
+    if (Number(settings.fontsize) > 0 && Number(settings.fontsize) < 20) {
+        settings.fontsize = 28;
+    }
 }
 
 function loadSettingstoForm(){
@@ -341,7 +345,7 @@ document.cookie = item + "=" + settings[item] +"; expires=" + oneYearFromNow + "
 function doSetting(item,type){
     if(item == 'fontsize'){
         if (type == 0){
-                settings.fontsize = 15;
+                settings.fontsize = 28;
             }
             else{
                 settings.fontsize = Number(settings.fontsize)+Number(type);
