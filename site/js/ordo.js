@@ -276,7 +276,7 @@ function getSettingsFromCookies(first=false){
     }
     // Migrate the old small default font size up to the new default
     if (Number(settings.fontsize) > 0 && Number(settings.fontsize) < 20) {
-        settings.fontsize = 28;
+        settings.fontsize = 20;
     }
 }
 

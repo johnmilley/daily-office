@@ -88,7 +88,7 @@ body {
 
   div#container {
     /*limit to 600px wide and centre in viewport on screens > 600px effective*/
-    width: 600px;
+    width: 80%;
     margin: auto;
     background-color: var(--bg-color);
     color: var(--font-color);
@@ -110,6 +110,7 @@ nav.main-nav {
   /* Sits outside #container so the bar spans the whole page width */
   margin-left: -5px;
   margin-right: -5px;
+  margin-bottom: 1em;
   width: calc(100% + 10px);
   box-sizing: border-box;
 }
@@ -621,9 +622,9 @@ button.hidden {
 }
 
 div#ordoheader{
-  height: 45px;
+  /* height: 45px; */
   position: sticky;
-  top: 40px;
+  /* top: 40px; */
   background: var(--bg-color);
   z-index: 1;
   padding:0px;
